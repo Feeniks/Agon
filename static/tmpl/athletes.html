@@ -1,0 +1,29 @@
+<section id="title" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Athletes</h3>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3" ng-if="op.users">
+                <input class="form-control text-filter" type="text" placeholder="Filter athletes..." ng-model="op.usersFilter"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <ag-loading ng-if="!op.users"></ag-loading>
+
+    <section class="container" ng-if="op.users">
+        <div class="row">
+            <div class="col-sm-3" ng-repeat="u in (filteredUsers = (op.users | filter:op.usersFilter))">
+                <ag-user user="u"></ag-user>
+            </div>
+
+            <ag-empty-list ng-if="!filteredUsers || !filteredUsers.length"></ag-empty-list>
+        </div>
+    </section>
+
+</section>

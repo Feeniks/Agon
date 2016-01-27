@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div class="col-sm-6">
+        <div ng-repeat="w in op.workouts | orderBy:timeUTC:true">
+            <ag-workout workout="w" update-f="setUpdateWorkout" delete-f="startDeleteWorkout"></ag-workout>
+        </div>
+
+        <ag-empty-list ng-if="op.workouts && !op.workouts.length"></ag-empty-list>
+        <ag-loading ng-if="!op.workouts"></ag-loading>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="workout">
+            <h3>{{op.updateWorkout._id ? ('Update: ' + op.updateWorkout.name) : 'Create a new workout'}}</h3>
+
+            <form id="updateWorkoutForm" name="updateWorkoutForm" role="form" ng-submit="updateWorkout()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Workout name..." ng-model="op.updateWorkout.name" required>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" ng-model="op.updateWorkout.scoreType" ng-options="t.type as t.label for t in op.scoreTypes" required></select>
+                </div>
+
+                <div class="form-group">
+                    <input type="datetime-local" class="form-control" ng-model="op.updateWorkout.time" required>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" rows="6" placeholder="Description..." ng-model="op.updateWorkout.description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="ladda-button" data-color="#999999" data-style="expand-right" data-size="s" ng-click="resetUpdateWorkout();" ng-disabled="updateWorkoutForm.$invalid">
+                        <span class="ladda-label">Cancel</span>
+                    </button>
+
+                    <button id="btnUpdateWorkout" class="ladda-button" data-color="green" data-style="expand-right" data-size="s" ng-click="updateWorkoutForm.submit()" ng-disabled="updateWorkoutForm.$invalid">
+                        <span class="ladda-label">{{ op.updateWorkout._id ? 'Update' : 'Create' }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

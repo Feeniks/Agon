@@ -1,0 +1,30 @@
+<section id="title" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Teams</h3>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3" ng-if="op.teams">
+                <input class="form-control text-filter" type="text" placeholder="Filter teams..." ng-model="op.teamsFilter"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <ag-loading ng-if="!op.teams"></ag-loading>
+
+    <section class="container" ng-if="op.teams">
+        <div class="row">
+
+            <div class="col-sm-6" ng-repeat="t in (filteredTeams = (op.teams | filter:op.teamsFilter))">
+                <ag-team team="t"></ag-team>
+            </div>
+
+            <ag-empty-list ng-if="!filteredTeams || !filteredTeams.length"></ag-empty-list>
+        </div>
+    </section>
+
+</section>

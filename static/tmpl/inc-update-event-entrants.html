@@ -1,0 +1,19 @@
+
+<div class="row">
+    <div class="col-sm-6">
+        <div ng-repeat="e in entrants">
+            <ag-entrant entrant="e" delete-f="startDeleteEntrant"></ag-entrant>
+        </div>
+
+        <ag-empty-list ng-if="op.entrants && !op.entrants.length"></ag-empty-list>
+        <ag-loading ng-if="!op.entrants"></ag-loading>
+    </div>
+
+    <div class="col-sm-6" ng-if="op.event._id">
+        <div class="entrant">
+            <h3>{{op.event.entryType.type === 'individual' ? 'Enter an athlete' : 'Enter a team' }}</h3>
+
+            TODO: user/team list etc
+        </div>
+    </div>
+</div>

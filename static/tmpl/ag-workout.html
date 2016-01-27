@@ -1,0 +1,19 @@
+
+<div class="workout">
+    <h3>
+        {{workout.name}}
+
+        <span class="workout-time"> @ {{ workoutTime | date: 'dd MMM yyyy HH:mm' }}</span>
+
+        <span class="pull-right">
+            <a href="" ng-click="updateF(workout)" ng-if="updateF">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <a href="" ng-click="deleteF(workout)" ng-if="deleteF">
+                &nbsp;<i class="fa fa-trash"></i>
+            </a>
+        </span>
+    </h3>
+
+    <div ng-bind-html="workout.description"></div>
+</div>

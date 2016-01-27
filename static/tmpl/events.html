@@ -1,0 +1,54 @@
+<section id="title" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3>Events</h3>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3" ng-if="op.events">
+                <input class="form-control text-filter" type="text" placeholder="Filter events..." ng-model="op.eventsFilter"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <ag-loading ng-if="!op.events"></ag-loading>
+
+    <section class="container" ng-if="op.events">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Type</th>
+                            <th>Starts</th>
+                            <th>Ends</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="e in (filteredEvents = (op.events | filter:op.eventsFilter | orderBy:startTimeUTC:true))">
+                            <td><a href="#/event/{{e._id}}">{{e.name}}</a></td>
+                            <td>
+                                {{e.entryType.type === 'individual' ? 'Individual Event' : 'Team Event (' + e.entryType.minTeamSize + ')'}}
+                            </td>
+                            <td>{{ $root.asDate(e.startTimeUTC) | date: 'dd MMM yyyy HH:mm' }}</td>
+                            <td>{{ $root.asDate(e.endTimeUTC) | date: 'dd MMM yyyy HH:mm' }}</td>
+                            <td>
+                                <a href="#/event/{{e._id}}"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ag-empty-list ng-if="!filteredEvents || !filteredEvents.length"></ag-empty-list>
+        </div>
+    </section>
+
+</section>

@@ -1,0 +1,114 @@
+
+<form id="updateForm" name="updateForm" role="form" ng-submit="updateEvent()">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="eventDescription">Event Description</label>
+                    <textarea id="eventDescription" class="form-control" rows="8" placeholder="Description..." ng-model="op.event.description" required></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="eventVenueName">Venue</label>
+                    <input type="text" id="eventVenueName" class="form-control" placeholder="Venue name..." ng-model="op.event.venueName" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <ui-gmap-google-map center='op.map.center' zoom='op.map.zoom' events='op.map.events'>
+                        <ui-gmap-marker coords="op.marker.coords" idkey="op.marker.id"></ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <button id="btnUpdateEvent" class="ladda-button pull-left" data-color="green" data-style="expand-right" data-size="s" ng-click="updateForm.submit()">
+                        <span class="ladda-label">{{ op.eventID ? 'Update Event' : 'Create Event' }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" class="form-control" placeholder="Event name..." ng-model="op.event.name" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="eventType">Entry Type</label>
+                    <select id="entryType" class="form-control" ng-model="op.event.entryType.type" ng-options="t.type as t.label for t in op.entryTypes" required></select>
+                </div>
+
+                <div class="col-sm-6" ng-show="op.event.entryType.type === 'team'">
+                    <label for="minTeamSize">Minimum Team Size</label>
+                    <select id="minTeamSize" class="form-control" ng-model="op.event.entryType.minTeamSize" required>
+                        <option value="2">Minimum 2</option>
+                        <option value="3">Minimum 3</option>
+                        <option value="4">Minimum 4</option>
+                        <option value="5">Minimum 5</option>
+                        <option value="6">Minimum 6</option>
+                        <option value="7">Minimum 7</option>
+                        <option value="8">Minimum 8</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="startTime">Starts</label>
+                        <input type="datetime-local" id="startTime" class="form-control" ng-model="op.event.startTime" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="endTime">Ends</label>
+                        <input type="datetime-local" id="endTime" class="form-control" ng-model="op.event.endTime" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="entryFee">Entry Fee ($)</label>
+                        <input type="number" id="entryFee" min="0" max="1000" class="form-control" ng-model="op.event.entryFee" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="maxEntrants">Maximum Entrants</label>
+                        <input type="number" id="maxEntrants" min="2" max="1000" class="form-control" ng-model="op.event.maxEntrants" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 center">
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="op.event.isInvitational" uib-btn-radio="true">Invitational</label>
+                        <label class="btn btn-primary" ng-model="op.event.isInvitational" uib-btn-radio="false">Open Registration</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 center">
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="op.event.visible" uib-btn-radio="true">Published</label>
+                        <label class="btn btn-primary" ng-model="op.event.visible" uib-btn-radio="false">Not Published</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

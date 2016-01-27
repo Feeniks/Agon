@@ -1,0 +1,23 @@
+
+
+<div class="modal fade" id="mod-dialog" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content md-content colored-header">
+			<div class="modal-header">
+				<h3 class="modal-title">{{title}}</h3>
+			</div>
+			<div class="modal-body">
+				<p>{{text}}</p>
+			</div>
+			<div class="modal-footer">
+                <button id="btnDialogCancel" class="ladda-button" data-color="#999999" data-style="expand-right" data-size="s" ng-click="cancel()">
+                    <span class="ladda-label">Cancel</span>
+                </button>
+
+                <button id="btnDialogSubmit" class="ladda-button" data-color="green" data-style="expand-right" data-size="s" ng-click="act()">
+                    <span class="ladda-label">{{btnText}}</span>
+                </button>
+			</div>
+		</div>
+	</div>
+</div>

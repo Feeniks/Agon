@@ -1,0 +1,41 @@
+
+<div class="event">
+    <h3>
+        {{event.name}}
+
+        <span class="pull-right">
+            <a href="" ng-click="updateF(event)" ng-if="updateF">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <a href="" ng-click="deleteF(event)" ng-if="deleteF">
+                &nbsp;<i class="fa fa-trash"></i>
+            </a>
+        </span>
+    </h3>
+
+    <div class="event-info">
+        <div class="row">
+            <div class="col-sm-3">
+                {{ eventStartTime | date: 'dd MMM yyyy HH:mm' }} - {{ eventEndTime | date: 'dd MMM yyyy HH:mm' }}
+            </div>
+
+            <div class="col-sm-3 center">
+                Entry fee: {{ event.entryFee | currency }}
+            </div>
+
+            <div class="col-sm-3 center">
+                {{ event.entryType.type === 'individual' ? 'Individual Event' : ('Team Event (team size: ' + event.entryType.minTeamSize + ')') }}
+            </div>
+
+            <div class="col-sm-3">
+                <a class="pull-right" href="#/event/{{event._id}}">
+                    {{ isFuture ? 'Leaderboard and Registration' : 'Leaderboard' }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-description">
+        {{event.description}}
+    </div>
+</div>

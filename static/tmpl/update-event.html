@@ -1,0 +1,31 @@
+<section id="title" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>
+                    {{ op.eventID ? 'Update Event' : 'Create an Event' }}
+                </h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <uib-tabset ng-if="op.event">
+        <uib-tab heading="Details">
+            <div ng-include="'tmpl/inc-update-event-details.html'"></div>
+        </uib-tab>
+
+        <uib-tab heading="Workouts" ng-if="op.eventID">
+            <div ng-include="'tmpl/inc-update-event-workouts.html'"></div>
+        </uib-tab>
+
+        <uib-tab heading="Entrants" ng-if="op.eventID">
+            <div ng-include="'tmpl/inc-update-event-entrants.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+
+    <ag-loading ng-if="!op.event"></ag-loading>
+
+</section>

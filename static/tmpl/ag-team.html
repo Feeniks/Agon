@@ -1,0 +1,10 @@
+
+<div class="team">
+    <h3>{{team.name}}</h3>
+
+    <div class="row">
+        <div class="col-sm-6" ng-repeat="m in team.members">
+            <ag-user user="team._userMap[m.userID]"></ag-user>
+        </div>
+    </div>
+</div>
